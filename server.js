@@ -28,7 +28,6 @@ app.use(function(req, res, next) {
 
 const excludedCourseCodes = ["DBD800", "DBW825", "SEC835", "WTP100"];
 
-// Home route
 app.get("/", (req, res) => {
     collegeData.getCourses()
         .then((courses) => {
@@ -40,17 +39,15 @@ app.get("/", (req, res) => {
         });
 });
 
-// About route
 app.get("/about", (req, res) => {
     res.render("layouts/main", { body: "about", activeRoute: "/about" });
 });
 
-// HTML Demo route
 app.get("/htmlDemo", (req, res) => {
     res.render("layouts/main", { body: "htmlDemo", activeRoute: "/htmlDemo" });
 });
 
-// Students route
+
 app.get("/students", (req, res) => {
     collegeData.getCourses()
         .then((courses) => {
@@ -110,7 +107,6 @@ app.get("/students", (req, res) => {
         });
 });
 
-// Student by number route
 app.get("/student/:studentNum", (req, res) => {
     let viewData = {};
     collegeData.getStudentByNum(req.params.studentNum)
@@ -142,7 +138,6 @@ app.get("/student/:studentNum", (req, res) => {
         });
 });
 
-// Courses route
 app.get("/courses", (req, res) => {
     collegeData.getCourses()
         .then((courses) => {
@@ -158,7 +153,6 @@ app.get("/courses", (req, res) => {
         });
 });
 
-// Course by ID route
 app.get("/course/:id", (req, res) => {
     collegeData.getCourseById(req.params.id)
         .then((course) => {
@@ -168,7 +162,6 @@ app.get("/course/:id", (req, res) => {
         .catch(() => res.status(404).send("Course Not Found"));
 });
 
-// Add student GET route
 app.get("/students/add", (req, res) => {
     collegeData.getCourses()
         .then((courses) => {
@@ -179,59 +172,48 @@ app.get("/students/add", (req, res) => {
         });
 });
 
-// Add student POST route
 app.post("/students/add", (req, res) => {
     collegeData.addStudent(req.body)
         .then(() => res.redirect("/students"))
         .catch((err) => res.status(500).json({ error: err }));
 });
-
-// Update student POST route
 app.post("/student/update", (req, res) => {
     collegeData.updateStudent(req.body)
         .then(() => res.redirect("/students"))
         .catch((err) => res.status(500).json({ error: err }));
 });
-
-// Add course GET route
 app.get("/courses/add", (req, res) => {
     res.render("layouts/main", { body: "addCourse", activeRoute: "/courses/add" });
 });
 
-// Add course POST route
 app.post("/courses/add", (req, res) => {
     collegeData.addCourse(req.body)
         .then(() => res.redirect("/courses"))
         .catch((err) => res.render("layouts/main", { body: "addCourse", message: err, activeRoute: "/courses/add" }));
 });
 
-// Update course POST route
 app.post("/course/update", (req, res) => {
     collegeData.updateCourse(req.body)
         .then(() => res.redirect("/courses"))
         .catch((err) => res.status(500).json({ error: err }));
 });
 
-// Delete course GET route
 app.get("/course/delete/:id", (req, res) => {
     collegeData.deleteCourseById(req.params.id)
         .then(() => res.redirect("/courses"))
         .catch(() => res.status(500).send("Unable to Remove Course / Course not found"));
 });
 
-// Delete student GET route
 app.get("/student/delete/:studentNum", (req, res) => {
     collegeData.deleteStudentByNum(req.params.studentNum)
         .then(() => res.redirect("/students"))
         .catch(() => res.status(500).send("Unable to Remove Student / Student not found"));
 });
 
-// 404 route
 app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, "views/404.html"));
 });
 
-// Start server
 collegeData.initialize()
     .then(() => {
         app.listen(HTTP_PORT, () => console.log(`Server running on port ${HTTP_PORT}`));

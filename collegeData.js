@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 
-// Connect to Neon.tech database
 const sequelize = new Sequelize('Akshay_6', 'Akshay_6_owner', 'npg_1UMDjGQCK7AH', {
     host: 'ep-rough-block-a5auu0vx-pooler.us-east-2.aws.neon.tech',
     dialect: 'postgres',
@@ -11,7 +10,6 @@ const sequelize = new Sequelize('Akshay_6', 'Akshay_6_owner', 'npg_1UMDjGQCK7AH'
     query: { raw: true }
 });
 
-// Define Student model
 const Student = sequelize.define('Student', {
     studentNum: {
         type: Sequelize.INTEGER,
@@ -28,7 +26,6 @@ const Student = sequelize.define('Student', {
     course: Sequelize.INTEGER
 });
 
-// Define Course model
 const Course = sequelize.define('Course', {
     courseId: {
         type: Sequelize.INTEGER,
@@ -39,10 +36,7 @@ const Course = sequelize.define('Course', {
     courseDescription: Sequelize.STRING
 });
 
-// Relationship
 Student.belongsTo(Course, { foreignKey: 'course' });
-
-// ✨ Initialize with Course Seeding
 module.exports.initialize = function () {
     return new Promise((resolve, reject) => {
         sequelize.sync()
@@ -63,7 +57,6 @@ module.exports.initialize = function () {
     });
 };
 
-// CRUD Operations
 module.exports.getAllStudents = function () {
     return new Promise((resolve, reject) => {
         Student.findAll()
