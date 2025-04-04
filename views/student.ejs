@@ -8,7 +8,6 @@
                 <form method="POST" action="/student/update">
                     <input type="hidden" name="studentNum" value="<%= viewData.student.studentNum %>" />
 
-                    <!-- Personal Info -->
                     <fieldset class="mb-4">
                         <legend class="text-primary fs-5">Personal Information</legend>
                         <div class="row">
@@ -47,7 +46,6 @@
                         </div>
                     </fieldset>
 
-                    <!-- Enrollment Info -->
                     <fieldset class="mb-4">
                         <legend class="text-primary fs-5">Enrollment Information</legend>
                         <div class="row">
@@ -66,8 +64,6 @@
                             </div>
                         </div>
                     </fieldset>
-
-                    <!-- Submit Button -->
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-success">Update Student</button>
                         <a href="/students" class="btn btn-outline-secondary ms-2">Cancel</a>
