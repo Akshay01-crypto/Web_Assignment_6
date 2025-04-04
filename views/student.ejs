@@ -1,0 +1,79 @@
+<div class="row justify-content-center">
+    <div class="col-md-11">
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><%= viewData.student.firstName %> <%= viewData.student.lastName %> - Student #: <%= viewData.student.studentNum %></h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/student/update">
+                    <input type="hidden" name="studentNum" value="<%= viewData.student.studentNum %>" />
+
+                    <!-- Personal Info -->
+                    <fieldset class="mb-4">
+                        <legend class="text-primary fs-5">Personal Information</legend>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input class="form-control" id="firstName" name="firstName" type="text" value="<%= viewData.student.firstName %>" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input class="form-control" id="lastName" name="lastName" type="text" value="<%= viewData.student.lastName %>" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input class="form-control" id="email" name="email" type="email" value="<%= viewData.student.email %>" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="addressStreet" class="form-label">Street</label>
+                                <input class="form-control" id="addressStreet" name="addressStreet" type="text" value="<%= viewData.student.addressStreet %>" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="addressCity" class="form-label">City</label>
+                                <input class="form-control" id="addressCity" name="addressCity" type="text" value="<%= viewData.student.addressCity %>" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="addressProvince" class="form-label">Province</label>
+                                <input class="form-control" id="addressProvince" name="addressProvince" type="text" value="<%= viewData.student.addressProvince %>" />
+                            </div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" id="TA" name="TA" type="checkbox" <% if (viewData.student.TA) { %>checked<% } %> />
+                            <label class="form-check-label" for="TA">Teaching Assistant (TA)</label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Enrollment Info -->
+                    <fieldset class="mb-4">
+                        <legend class="text-primary fs-5">Enrollment Information</legend>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="course" class="form-label">Course</label>
+                                <% if (viewData.courses && viewData.courses.length > 0) { %>
+                                    <select class="form-control" name="course" id="course">
+                                        <option value="">Select Course</option>
+                                        <% viewData.courses.forEach(function(course) { %>
+                                            <option value="<%= course.courseId %>" <% if (course.selected) { %>selected<% } %>><%= course.courseCode %></option>
+                                        <% }); %>
+                                    </select>
+                                <% } else { %>
+                                    <div class="text-muted">No Courses Available</div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Submit Button -->
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success">Update Student</button>
+                        <a href="/students" class="btn btn-outline-secondary ms-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{
+  "name": "web700",
+  "version": "1.0.0",
+  "main": "collegeData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "Hi there ..\r Welcome to the readme page for my Assignment 5 Repo\r .....................................................\r Notes:\r I have excluded some courses \r I have used render",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-ejs-layouts": "^2.5.1",
+    "pg": "^8.14.1",
+    "sequelize": "^6.37.7"
+  }
+}

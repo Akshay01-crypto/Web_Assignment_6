@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+html, body {
+    height: 100%;
+    overflow: auto;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right bottom, #1e90ff, #00bfff);
+    color: #333;
+}
+
+.navbar-light.bg-light {
+    background: linear-gradient(to right, #000428, #004e92);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    color: #ffffff !important;
+    text-shadow: 1px 1px 3px #000;
+}
+
+.nav-link {
+    color: #ffffff !important;
+}
+
+.nav-link:hover {
+    color: #ffd700 !important;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #4169e1, #00bfff);
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right bottom, #ffd700, #ffa500);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+}
+
+.table tbody tr:nth-child(odd) td {
+    background-color: rgba(30,144,255, 0.2);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #003366;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+}
+
+a {
+    color: #ffa500;
+}
+
+a:hover {
+    color: #ffd700;
+}
+
+legend {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 1.3em;
+    text-shadow: 1px 1px 3px #000;
+    color: #ffffff;
+}

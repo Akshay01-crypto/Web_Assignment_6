@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><%= course.courseCode %> - <%= course.courseDescription %></h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/course/update">
+                    <input type="hidden" name="courseId" value="<%= course.courseId %>" />
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="courseCode" class="form-label">Course Code</label>
+                            <input type="text" class="form-control" id="courseCode" name="courseCode" value="<%= course.courseCode %>" required />
+                        </div>
+                        <div class="col-md-8">
+                            <label for="courseDescription" class="form-label">Course Description</label>
+                            <input type="text" class="form-control" id="courseDescription" name="courseDescription" value="<%= course.courseDescription %>" required />
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success">Update Course</button>
+                        <a href="/courses" class="btn btn-outline-secondary ms-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

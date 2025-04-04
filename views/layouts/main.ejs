@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WEB700 - Home</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/theme.css">
+    <style>
+        html, body {
+            height: 100%;
+            overflow: auto;
+            background: linear-gradient(to bottom right, red, blue);
+            margin: 0;
+        }
+        .navbar {
+            padding: 10px 20px;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: white !important;
+            font-family: 'Arial', sans-serif;
+        }
+        .nav-link {
+            color: white !important;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            margin: 0 15px; 
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #ffd700 !important; 
+        }
+        .nav-link.active {
+            color: #ffd700 !important; 
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Akshay Nedumparambil Unnikrishnan</a>
+        <div class="navbar-nav">
+            <a class="nav-link <% if (activeRoute === '/') { %>active<% } %>" href="/">Home</a>
+            <a class="nav-link <% if (activeRoute === '/about') { %>active<% } %>" href="/about">About</a>
+            <a class="nav-link <% if (activeRoute === '/htmlDemo') { %>active<% } %>" href="/htmlDemo">HTML Demo</a>
+            <a class="nav-link <% if (activeRoute === '/students') { %>active<% } %>" href="/students">Students</a>
+            <a class="nav-link <% if (activeRoute === '/courses') { %>active<% } %>" href="/courses">Courses</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <%- include('../' + body + '.ejs') %>
+    </div>
+
+    <script src="/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

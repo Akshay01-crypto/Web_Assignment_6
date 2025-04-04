@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h1 class="text-primary">Welcome to My Website</h1>
+                <p class="lead">This site consists of 3 static views (Home, About, HTML Demo) as well as 5 routes that supply data, including:</p>
+
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <a href="/students">All Students</a>
+                    </li>
+                    <li class="list-group-item">
+                        Students by Course:
+                        <ul class="list-group list-group-flush ps-3">
+                            <% if (courses && courses.length > 0) { %>
+                                <% courses.forEach(function(course) { %>
+                                    <li class="list-group-item">
+                                        <a href="/students?course=<%= course.courseId %>"><%= course.courseCode %></a>
+                                    </li>
+                                <% }); %>
+                            <% } else { %>
+                                <li class="list-group-item">No courses available</li>
+                            <% } %>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/student/2">A Single Student By Student Number</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="/courses">All Courses</a>
+                    </li>
+                </ul>
+
+                <h3 class="text-primary">About HTML5</h3>
+                <p>HTML5 is a markup language used for structuring and presenting content on the World Wide Web. It supports multimedia, semantic elements, and improved performance for modern web applications.</p>
+            </div>
+        </div>
+    </div>
+</div>

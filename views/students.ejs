@@ -1,0 +1,80 @@
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+            <h2 class="text-white">Students</h2>
+            <a href="/students/add" class="btn btn-success">Add New Student</a>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <form id="courseFilterForm" action="/students" method="GET" class="row g-3 align-items-end">
+                    <div class="col-md-4">
+                        <label for="courseFilter" class="form-label">Filter by Course:</label>
+                        <select class="form-select" id="courseFilter" name="course" onchange="this.form.submit()">
+                            <option value="">All Courses</option>
+                            <% if (courses && courses.length > 0) { %>
+                                <% courses.forEach(function(course) { %>
+                                    <option value="<%= course.courseId %>" <% if (selectedCourse == course.courseId) { %>selected<% } %>>
+                                        <%= course.courseCode %>
+                                    </option>
+                                <% }); %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <% if (selectedCourse) { %>
+                        <div class="col-auto">
+                            <a href="/students" class="btn btn-outline-secondary">Clear Filter</a>
+                        </div>
+                    <% } %>
+                </form>
+            </div>
+        </div>
+
+        <% if (message) { %>
+            <div class="alert alert-warning text-center">
+                <strong><%= message %></strong>
+            </div>
+        <% } else if (students && students.length > 0) { %>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Student #</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th>Course ID</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% students.forEach(function(student) { %>
+                            <tr>
+                                <td><%= student.studentNum %></td>
+                                <td>
+                                    <a href="/student/<%= student.studentNum %>">
+                                        <%= student.firstName %> <%= student.lastName %>
+                                    </a>
+                                </td>
+                                <td><a href="mailto:<%= student.email %>"><%= student.email %></a></td>
+                                <td><%= student.addressStreet %>, <%= student.addressCity %>, <%= student.addressProvince %></td>
+                                <td><%= student.TA ? "Teaching Assistant" : "Student" %></td>
+                                <td>
+                                    <a href="/students?course=<%= student.course %>"><%= student.course %></a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="/student/delete/<%= student.studentNum %>" class="btn btn-danger btn-sm">Remove</a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <div class="alert alert-warning text-center">
+                <strong><%= message || "No students found." %></strong>
+            </div>
+        <% } %>
+    </div>
+</div>
